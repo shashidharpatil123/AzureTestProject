@@ -24,10 +24,10 @@ stages:
       
       jobs:
         - deployment: Deploywebsite
-             displayname:'Deploy website'
-             #environment: 'windows 11 server.DAVE'
-             strategy:
-              runonce:
+          displayname:'Deploy website'
+          environment:'windows 11 server.DAVE'
+          strategy:
+           runonce:
                 deploy:
                  steps:
                    - checkout : none
@@ -44,7 +44,6 @@ stages:
                         IISDeploymentType: 'IISWebsite'
                         ActionIISWebsite: 'StopWebsite'
                         StartStopWebsiteName: '${{variables.IISWebsiteName}}'
-                        
                    - script: echo $(Pipeline.Workspace)\buildPipeline\AzureTestProject\RoundTheCode.AzureTestProject
                    - task: IISWebAppDeploymentOnMachineGroup@0
                      name: 'DeployIIS'
